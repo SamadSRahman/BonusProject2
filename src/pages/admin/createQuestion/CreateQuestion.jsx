@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import style from "./CreateQuestion.module.css";
-import Button from "../../../components/button/Button";
-import FormInput from "../../../components/formInput/FormInput";
 import { getLocalData } from "../../../Utils";
 import { useNavigate } from "react-router-dom";
+import { TextField, Button } from "@mui/material";
 
 export default function CreateQuestion() {
   const [questionData, setQuestion] = useState("");
@@ -52,43 +51,48 @@ export default function CreateQuestion() {
   }
 
   return (
-    <div className={style.mainBox}>
-      <FormInput
-        placeholder="Question here..."
+    <div className={style.container}>
+       <div className={style.mainBox}>
+      <TextField
+        label="Question here..."
         onChange={(e) => setQuestion(e.target.value)}
         type={"text"}
       />
-      <FormInput
-        placeholder="Option 1"
+      <TextField
+        label="Option 1"
         onChange={(e) => setOption1(e.target.value)}
         type={"text"}
       />
-      <FormInput
-        placeholder="Option 2"
+      <TextField
+        label="Option 2"
         onChange={(e) => setOption2(e.target.value)}
         type={"text"}
       />
-      <FormInput
-        placeholder="Option 3"
+      <TextField
+        label="Option 3"
         onChange={(e) => setOption3(e.target.value)}
         type={"text"}
       />
-      <FormInput
-        placeholder="Option 4"
+      <TextField
+        label="Option 4"
         onChange={(e) => setOption4(e.target.value)}
         type={"text"}
       />
-      <FormInput
-        placeholder="Correct option number"
+      <TextField
+        label="Correct option number"
         onChange={(e) => setCorrectAnsIdx(e.target.value)}
         type={"number"}
       />
       <input type="file" />
-      <Button
+        <Button
+          id={style.submitBtn}
+          variant="contained"
         onChange={(e) => handleImagePick(e)}
         onClick={handleQuestionAdd}
         value={"Submit"}
-      />
+        >Submit</Button>
+        
     </div>
+   </div>
   );
 }

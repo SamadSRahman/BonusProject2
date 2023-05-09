@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./EditQuestion.module.css";
 import { getLocalData } from "../../../Utils";
-import Button from "../../../components/button/Button";
+import {Button, TextField} from "@mui/material";
 
 export default function EditQuestion() {
   const [questionData, setQuestionData] = useState([]);
@@ -40,7 +40,7 @@ export default function EditQuestion() {
         {questionData.map((ele, index) => (
           <div
             onClick={() => handleQuestionSelect(index)}
-            id={style.questionBox}
+            id={style.innerQuestionBox}
             key={index}
           >
             <span>
@@ -48,27 +48,29 @@ export default function EditQuestion() {
 
               <span>{ele.question}</span>
             </span>
-            <span>Edit</span>
+            <Button>Edit</Button>
           </div>
         ))}
       </div>
       <div id={style.OptionBox}>
-        <input
+        <TextField
+          id={style.inputField}
+          variant="outlined"
           style={{ width: "100%" }}
           onChange={(e) => handleQuestionEditChange(e)}
           value={question.question}
-        ></input>
+        ></TextField>
         {Object.keys(question).length != 0 && (
           <div>
-            <div contentEditable>{question.options[0]}</div>
-            <div contentEditable>{question.options[1]}</div>
-            <div contentEditable>{question.options[2]}</div>
-            <div contentEditable>{question.options[3]}</div>
-            <div contentEditable>{question.correct_answer}</div>
+            <div contentEditable>Option 1: &nbsp;&nbsp;{question.options[0]}</div>
+            <div contentEditable>Option 2:&nbsp;&nbsp;{question.options[1]}</div>
+            <div contentEditable>Option 3:&nbsp;&nbsp;{question.options[2]}</div>
+            <div contentEditable>Option 4:&nbsp;&nbsp;{question.options[3]}</div>
+            <div contentEditable>Correct Option:&nbsp;&nbsp;{question.correct_answer}</div>
           </div>
         )}
 
-        <Button onClick={handleUpdateQuestion} value={"Update Question"} />
+        <Button id={style.updateBtn} onClick={handleUpdateQuestion} variant='contained' >Update Question</Button>
       </div>
     </div>
   );

@@ -7,11 +7,27 @@
 #questionBox {
   width: 50vw;
   overflow: scroll;
-}
+  border: 1px solid;
+  background-color: brown;
 
+}
+#innerQuestionBox{
+  border: 1px solid;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: wheat;
+
+}
 #OptionBox {
   width: 50vw;
   border: 2px solid;
+  background-color: #0A214C;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 #questionBox {
@@ -21,4 +37,14 @@
 
 #queIndex {
   margin-right: 1rem;
+}
+#updateBtn{
+  background-color: white;
+  border-radius: 5px;
+color: black;
+  text-transform: none;
+}
+#inputField{
+  background-color: white;
+color: black;
 }

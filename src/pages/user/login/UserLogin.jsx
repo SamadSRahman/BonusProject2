@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./Login.module.css";
-import FormInput from "../../../components/formInput/FormInput";
-import Button from "../../../components/button/Button";
+
+
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { TextField, Button } from "@mui/material";
 
 export default function UserLogin() {
   const navigate = useNavigate();
@@ -13,14 +14,16 @@ export default function UserLogin() {
   }
 
   return (
-    <div className={style.mainBox}>
-      <h2>User Login</h2>
-      <FormInput />
-      <FormInput />
-      <Button onClick={handleUserLogin} value={"Submit"} />
+    <div className={style.container}>
+      <div className={style.mainBox}>
+      <h1>User Login</h1>
+      <TextField variant="outlined" label='Email' type='email' />
+      <TextField variant="outlined" label='Password' type='password'/>
+      <Button id={style.loginBtn} variant="contained" onClick={handleUserLogin} >Log In</Button>
       <span>
         Switch to <Link to="/adminlogin">admin</Link>
       </span>
+    </div>
     </div>
   );
 }

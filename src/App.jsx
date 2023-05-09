@@ -11,7 +11,8 @@ import ResultPage from "./pages/user/resultPage/ResultPage";
 
 export default function App() {
   return (
-    <Routes>
+    <div className="container">
+         <Routes>
       <Route path="/" element={<UserLogin />}></Route>
       <Route path="/userhome" element={<UserHome />}></Route>
       <Route path="/test" element={<Test />}></Route>
@@ -21,5 +22,6 @@ export default function App() {
       <Route path="/createquestion" element={<CreateQuestion />}></Route>
       <Route path="/editquestion" element={<EditQuestion />}></Route>
     </Routes>
+ </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./Test.module.css";
-import Button from "../../../components/button/Button";
+import {Button} from "@mui/material";
 import { getLocalData } from "../../../Utils";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -58,10 +58,11 @@ export default function Test() {
   }
 
   return (
-    <div className={style.mainBox}>
+    <div className={style.container}>
+      <div className={style.mainBox}>
       {questionset.length != 0 && (
         <span>
-          {questionCount + 1}
+          Question: {questionCount + 1}
           <h2>{data[questionset[questionCount]].question}</h2>
         </span>
       )}
@@ -87,7 +88,8 @@ export default function Test() {
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-GDv4TEvVaZePX37LgJqE5p0ldLMVlY4CGpSuR0&s" />
         </div>
       </div>
-      <Button onClick={handleQuestionNext} value={"Next"} />
+      <Button id={style.nextBtn} variant="contained" onClick={handleQuestionNext} >Next</Button>
+    </div>
     </div>
   );
 }

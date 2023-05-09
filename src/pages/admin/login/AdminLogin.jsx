@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./AdminLogin.module.css";
-import FormInput from "../../../components/formInput/FormInput";
-import Button from "../../../components/button/Button";
+
+import { TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
@@ -16,17 +16,22 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className={style.mainBox}>
-      <h2>Admin Login</h2>
-      <FormInput value={email} onChange={(e) => setEmail(e.target.value)} />
-      <FormInput
+    <div className={style.container}>
+       <div className={style.mainBox}>
+      <h1>Admin Login</h1>
+      <TextField label='Email' variant="outlined" type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+      <TextField
+        label='Password'
         value={password}
+        variant="outlined"
+        type='password'
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button onClick={handleSubmit} value={"Submit"} />
+      <Button id={style.loginBtn} variant="contained" onClick={handleSubmit} >Log In</Button>
       <span>
         Switch to <Link to="/">User</Link>
       </span>
     </div>
+   </div>
   );
 }
