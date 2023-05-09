@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./EditQuestion.module.css";
 import { getLocalData } from "../../../Utils";
-import FormInput from "../../../components/formInput/FormInput";
 import Button from "../../../components/button/Button";
 
 export default function EditQuestion() {

@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function ResultPage() {
-  return <div>ResultPage</div>;
+  const result = useSelector((state) => state.questions.result);
+  return <div>{result}</div>;
 }

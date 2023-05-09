@@ -41,7 +41,6 @@ export default function CreateQuestion() {
       navigate("/adminhome");
     }
   }
-  // checking if data is not empty then dont push data to local storage
 
   function handleImagePick(e) {
     const image = e.target.files[0];
@@ -90,8 +89,6 @@ export default function CreateQuestion() {
         onClick={handleQuestionAdd}
         value={"Submit"}
       />
-      {/* <div>{JSON.stringify(selectData)}</div> */}
-      {/* <div>{" image" + imageUrl}</div> */}
     </div>
   );
 }

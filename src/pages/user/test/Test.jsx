@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import style from "./Test.module.css";
 import Button from "../../../components/button/Button";
-import { useSelector } from "react-redux";
 import { getLocalData } from "../../../Utils";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { calculateResult } from "../../../state/QuestionSlice";
 
 export default function Test() {
   const [data, setData] = useState([]); //[ {} {} {} ]
   const [questionset, setQuestionset] = useState([]); //[12,45,65,,3,222,3]
   const [questionCount, setQuestionCount] = useState(0);
-  const [currQuestion, setCurrQuestion] = useState(questionset[0]);
+  const [checkedState, setCheckedState] = useState(new Array(4).fill(false)); // array with selected option
+  const [resultCount, setResultCount] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const localStorageData = getLocalData();
@@ -19,24 +22,40 @@ export default function Test() {
     for (let i = 0; i < 10; i++) {
       const questionNum = Math.floor(Math.random() * 1 * 50);
       tempArr.push(questionNum);
-
-      // array for question num prepared
     }
     setQuestionset([...tempArr]);
-    // dispatch(setQestionData(localStorageData));
   }, []);
-
-  //   useEffect(() => {
-  //     const questionNum = Math.floor(Math.random() * 1 * data.length);
-  //     console.log(questionNum);
-  //   }, []);
 
   function handleQuestionNext() {
     if (questionCount < 9) {
+      const selectedIndex = checkedState.indexOf(true);
+      const currectAnswer = data[questionset[questionCount]].correct_answer;
+      const optionArr = data[questionset[questionCount]].options;
+      const correctIndex = optionArr.indexOf(currectAnswer);
+      if (selectedIndex == correctIndex) {
+        setResultCount(resultCount + 1);
+      }
+      setCheckedState([false, false, false, false]);
+      console.log(resultCount);
       setQuestionCount(questionCount + 1);
     } else {
+      dispatch(calculateResult(resultCount));
+
       navigate("/result");
     }
+  }
+
+  function handleOnCheckboxChange(index) {
+    const temp = [];
+    for (let i = 0; i < 4; i++) {
+      if (i == index) {
+        temp.push(true);
+      } else {
+        temp.push(false);
+      }
+    }
+    setCheckedState([...temp]);
+    // console.log(temp);
   }
 
   return (
@@ -51,18 +70,17 @@ export default function Test() {
       <div className={style.optionSection}>
         {questionset.length != 0 && (
           <div id={style.option}>
-            <div id={style.option}>
-              1. {data[questionset[questionCount]].options[0]}
-            </div>
-            <div id={style.option}>
-              2. {data[questionset[questionCount]].options[1]}
-            </div>
-            <div id={style.option}>
-              3. {data[questionset[questionCount]].options[2]}
-            </div>
-            <div id={style.option}>
-              4. {data[questionset[questionCount]].options[3]}
-            </div>
+            {data[questionset[questionCount]].options.map((ele, index) => (
+              <div key={index} id={style.optionItem}>
+                <input
+                  id={style.checkbox}
+                  type="checkbox"
+                  checked={checkedState[index]}
+                  onChange={() => handleOnCheckboxChange(index)}
+                />{" "}
+                <div>{ele}</div>
+              </div>
+            ))}
           </div>
         )}
 
@@ -71,8 +89,6 @@ export default function Test() {
         </div>
       </div>
       <Button onClick={handleQuestionNext} value={"Next"} />
-      {/* <div>{JSON.stringify(data)}</div> */}
-      {/* <div>{JSON.stringify(questionset)}</div> */}
     </div>
   );
 }
