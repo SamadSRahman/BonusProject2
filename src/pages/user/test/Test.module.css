@@ -15,7 +15,18 @@
 
 #option {
   font-size: 1.5rem;
+  gap: 1rem;
 }
+
+#optionItem {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+/* #checkbox {
+  font-size: 2rem;
+} */
 
 #imgOutline {
   height: 20rem;
