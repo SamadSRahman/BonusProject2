@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import style from "./AdminHome.module.css";
 import Button from "../../../components/button/Button";
 import axios from "axios";
-// import { useSelector, useDispatch } from "react-redux";
-// import { addData } from "../../../state/QuestionSlice";
 import { useNavigate } from "react-router-dom";
 import { getLocalData } from "../../../Utils";
 
 export default function AdminHome() {
-  // const [data, setData] = useState([]);
-  // const selectData = useSelector((state) => state.questions.data);
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -59,7 +54,6 @@ export default function AdminHome() {
           value={"Create Question"}
         ></Button>
       </div>
-      {/* <div>{JSON.stringify(data)}</div> */}
     </div>
   );
 }

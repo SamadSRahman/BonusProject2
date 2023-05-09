@@ -55,7 +55,6 @@ export default function Test() {
       }
     }
     setCheckedState([...temp]);
-    // console.log(temp);
   }
 
   return (
