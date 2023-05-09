@@ -3,9 +3,6 @@
   display: flex;
   flex-direction: column;
   margin: 5rem;
-  /* font-size: 1.5rem; */
-  /* align-items: center;
-    justify-content: center; */
 }
 
 .optionSection {
@@ -23,10 +20,6 @@
   gap: 1rem;
   margin: 1rem;
 }
-
-/* #checkbox {
-  font-size: 2rem;
-} */
 
 #imgOutline {
   height: 20rem;
